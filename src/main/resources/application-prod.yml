@@ -10,5 +10,5 @@ spring:
 
 server:
   ssl:
-    certificate-private-key: classpath:keypair/privkey.pem
-    certificate: classpath:keypair/cert.pem
+    certificate-private-key: classpath:../ssl/privkey.pem
+    certificate: classpath:../ssl/cert.pem

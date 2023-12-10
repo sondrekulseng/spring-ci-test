@@ -10,5 +10,5 @@ spring:
 
 server:
   ssl:
-    certificate-private-key: classpath:../ssl/privkey.pem
-    certificate: classpath:../ssl/cert.pem
+    certificate-private-key: /home/ubuntu/ssl/privkey.pem
+    certificate: /home/ubuntu/ssl/cert.pem

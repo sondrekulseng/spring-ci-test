@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.models.MessageDto;
+import app.services.ChatRoomService;
 import app.services.MessageService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -12,14 +13,17 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public class ChatController {
+public class ChatWebSocketController {
 
     private final MessageService messageService;
+    private final ChatRoomService chatRoomService;
 
-    public ChatController(
-        final MessageService messageService
+    public ChatWebSocketController(
+        final MessageService messageService,
+        final ChatRoomService chatRoomService
     ) {
         this.messageService = messageService;
+        this.chatRoomService = chatRoomService;
     }
 
 

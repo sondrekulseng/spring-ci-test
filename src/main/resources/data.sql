@@ -5,3 +5,9 @@ CREATE TABLE MESSAGE (
     message VARCHAR(255),
     dateTimeSent varchar(50)
 );
+
+CREATE TABLE CHAT_ROOM (
+    id CHAR(36) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    isPublic BOOLEAN
+);

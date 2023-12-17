@@ -10,10 +10,12 @@ public class ChatRoomEntity {
     private String id;
 
     private String name;
+    private boolean isPublic;
 
-    public ChatRoomEntity(String id, String name) {
+    public ChatRoomEntity(String id, String name, boolean isPublic) {
         this.id = id;
         this.name = name;
+        this.isPublic = isPublic;
     }
 
     public ChatRoomEntity() {
@@ -33,5 +35,13 @@ public class ChatRoomEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(boolean aPublic) {
+        isPublic = aPublic;
     }
 }

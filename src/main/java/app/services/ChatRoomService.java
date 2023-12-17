@@ -5,6 +5,7 @@ import app.models.ChatRoomDto;
 import app.repositories.ChatRoomRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -13,7 +14,7 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
 
     public ChatRoomService(
-            final ChatRoomRepository chatRoomRepository
+        final ChatRoomRepository chatRoomRepository
     ) {
         this.chatRoomRepository = chatRoomRepository;
     }
@@ -23,17 +24,28 @@ public class ChatRoomService {
         chatRoomRepository.save(
                 new ChatRoomEntity(
                         id,
-                        chatRoomDto.name()
+                        chatRoomDto.name(),
+                        chatRoomDto.isPublic()
                 )
         );
         return id;
     }
 
-    public String findById(final String roomId) {
+    public ChatRoomDto findById(final String roomId) {
         ChatRoomEntity chatRoomEntity = chatRoomRepository
                 .findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException(roomId + " is not a valid chatroom"));
 
-        return chatRoomEntity.getName();
+        return new ChatRoomDto(
+                chatRoomEntity.getId(),
+                chatRoomEntity.getName(),
+                chatRoomEntity.isPublic()
+        );
+    }
+
+    public List<ChatRoomDto> getPublicRooms() {
+        return chatRoomRepository.findByIsPublic(true).stream()
+                .map(entity -> new ChatRoomDto(entity.getId(), entity.getName(), entity.isPublic()))
+                .toList();
     }
 }

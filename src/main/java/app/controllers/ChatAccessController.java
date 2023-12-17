@@ -5,6 +5,8 @@ import app.services.ChatRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class ChatAccessController {
@@ -23,11 +25,16 @@ public class ChatAccessController {
     }
 
     @GetMapping("/room/{id}")
-    public ResponseEntity<String> getRoom(@PathVariable("id") final String id) {
+    public ResponseEntity<ChatRoomDto> getRoom(@PathVariable("id") final String id) {
         try {
             return ResponseEntity.ok(chatRoomService.findById(id));
         } catch (IllegalArgumentException illegalArgumentException) {
             return ResponseEntity.internalServerError().build();
         }
+    }
+
+    @GetMapping("/rooms/public")
+    public List<ChatRoomDto> getPublicRooms() {
+        return chatRoomService.getPublicRooms();
     }
 }

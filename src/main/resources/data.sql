@@ -9,5 +9,5 @@ CREATE TABLE MESSAGE (
 CREATE TABLE CHAT_ROOM (
     id CHAR(36) PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    password varchar(50) NOT NULL
-)
+    isPublic BOOLEAN
+);
